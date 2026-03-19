@@ -2,7 +2,6 @@
 pragma solidity ^0.8.8;
 
 import "./IERC20.sol";
-import "./SafeMath.sol";
 
 contract HustToken is IERC20 {
   address private owner;
