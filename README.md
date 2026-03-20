@@ -1,7 +1,14 @@
-# Sample Hardhat 3 Beta Project (minimal)
+# My DeFi learning repo
 
-This project has a minimal setup of Hardhat 3 Beta, without any plugins.
+**So, what is this?** This is just a repository contains my projects when trying to learn about blockchain, Ethereum and DeFi.
 
-## What's included?
+Right now, there is **1** project:
+- **HUSTToken (HUST)**, an ERC20-compliance token.
 
-The project includes native support for TypeScript, Hardhat scripts, tasks, and support for Solidity compilation and tests.
+### How to run
+
+```bash
+nvm use
+npx hardhat build
+npx hardhat test 
+```
