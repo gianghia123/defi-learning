@@ -1,9 +1,11 @@
-import { defineConfig } from "hardhat/config";
+import { configVariable, defineConfig } from "hardhat/config";
 import hardhatEthers from "@nomicfoundation/hardhat-ethers";
 import hardhatTypechain from "@nomicfoundation/hardhat-typechain";
 import hardhatMocha from "@nomicfoundation/hardhat-mocha";
 import hardhatEthersChaiMatchers from "@nomicfoundation/hardhat-ethers-chai-matchers";
 import hardhatNetworkHelpers from "@nomicfoundation/hardhat-network-helpers";
+import hardhatKeystore from "@nomicfoundation/hardhat-keystore";
+import hardhatIgnition from "@nomicfoundation/hardhat-ignition";
 
 export default defineConfig({
     plugins: [
@@ -12,8 +14,18 @@ export default defineConfig({
         hardhatMocha,
         hardhatEthersChaiMatchers,
         hardhatNetworkHelpers,
+        hardhatKeystore,
+        hardhatIgnition,
     ],
     solidity: {
         version: "0.8.28",
+    },
+    networks: {
+        sepolia: {
+            type: "http",
+            chainType: "l1",
+            url: configVariable("SEPOLIA_RPC_URL"),
+            accounts: [configVariable("SEPOLIA_PRIVATE_KEY")],
+        },
     },
 });
