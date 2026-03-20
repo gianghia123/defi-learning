@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — DeFi Learning{% endblock %}
+{% block content %}
+<section data-page="dashboard">
+    <h1>Dashboard</h1>
+
+    <div class="card">
+        <h2>Profile</h2>
+        <p><strong>Username:</strong> <span id="dash-username">—</span></p>
+        <p><strong>Role:</strong> <span id="dash-role">—</span></p>
+    </div>
+
+    <div class="card">
+        <h2>Linked Wallets</h2>
+        <ul id="dash-wallets"><li>Loading…</li></ul>
+    </div>
+
+    <div class="card">
+        <h2>Balances</h2>
+        <p class="hint">Balance checking is handled on-chain via your wallet provider (e.g. MetaMask).</p>
+        <div id="dash-balances"><p>Connect a wallet to view balances.</p></div>
+    </div>
+
+    <div class="card">
+        <h2>Recent Transactions</h2>
+        <table id="dash-transactions">
+            <thead><tr><th>Type</th><th>From</th><th>To</th><th>Amount</th><th>Tx Hash</th><th>Date</th></tr></thead>
+            <tbody><tr><td colspan="6">Loading…</td></tr></tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

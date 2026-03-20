@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Login — DeFi Learning{% endblock %}
+{% block content %}
+<section class="auth-box" data-page="login">
+    <h1>Login</h1>
+    <form id="login-form">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required autofocus>
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+    <p class="small">Don't have an account? <a href="/register">Register</a></p>
+</section>
+{% endblock %}

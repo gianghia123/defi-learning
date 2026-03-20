@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Mint — DeFi Learning{% endblock %}
+{% block content %}
+<section data-page="mint">
+    <h1>Mint Tokens <span class="badge">Admin</span></h1>
+    <p class="hint">Only administrators can mint new tokens. This calls the backend, which would use a server-controlled wallet.</p>
+
+    <div class="card">
+        <form id="mint-form">
+            <label for="mint-to">Recipient Address</label>
+            <input id="mint-to" type="text" placeholder="0x…" required>
+
+            <label for="mint-amount">Amount</label>
+            <input id="mint-amount" type="number" step="any" min="0" placeholder="0.0" required>
+
+            <button type="submit">Mint Tokens</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

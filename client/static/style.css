@@ -1,0 +1,256 @@
+/* ===================================================================
+   DeFi Learning — Minimal Stylesheet
+   =================================================================== */
+
+:root {
+    --bg: #fafafa;
+    --fg: #222;
+    --muted: #666;
+    --border: #ddd;
+    --accent: #2a6df4;
+    --accent-hover: #1b53c6;
+    --danger: #d93025;
+    --radius: 6px;
+    --max-w: 720px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--fg);
+    background: var(--bg);
+    line-height: 1.6;
+}
+
+/* --- Nav ---------------------------------------------------------------- */
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: #fff;
+}
+
+nav .brand {
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: var(--fg);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+/* --- Main --------------------------------------------------------------- */
+
+main {
+    max-width: var(--max-w);
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+h1 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* --- Cards -------------------------------------------------------------- */
+
+.card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+}
+
+/* --- Forms -------------------------------------------------------------- */
+
+.auth-box {
+    max-width: 360px;
+    margin: 4rem auto;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 0.25rem;
+    margin-top: 0.75rem;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    font-size: 0.95rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    outline: none;
+}
+input:focus,
+select:focus {
+    border-color: var(--accent);
+}
+
+button {
+    margin-top: 1rem;
+    padding: 0.55rem 1.2rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: var(--radius);
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+}
+button:hover {
+    background: var(--accent-hover);
+}
+
+.link-btn {
+    background: none;
+    color: var(--accent);
+    padding: 0;
+    margin: 0;
+    font-size: 0.85rem;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.link-btn:hover {
+    color: var(--accent-hover);
+}
+.link-btn.danger {
+    color: var(--danger);
+}
+
+/* --- Flash messages ----------------------------------------------------- */
+
+.flash {
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+.flash-ok {
+    background: #e6f4ea;
+    color: #1a7f37;
+}
+.flash-error {
+    background: #fce8e6;
+    color: var(--danger);
+}
+.hidden {
+    display: none;
+}
+
+/* --- Tables ------------------------------------------------------------- */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+th,
+td {
+    text-align: left;
+    padding: 0.4rem 0.6rem;
+    border-bottom: 1px solid var(--border);
+}
+th {
+    font-weight: 600;
+    color: var(--muted);
+}
+
+/* --- Lists -------------------------------------------------------------- */
+
+ul {
+    list-style: none;
+}
+ul li {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+ul li:last-child {
+    border-bottom: none;
+}
+
+/* --- Misc --------------------------------------------------------------- */
+
+.hint {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+}
+
+.small {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 1rem;
+}
+
+.badge {
+    font-size: 0.7rem;
+    background: var(--danger);
+    color: #fff;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    vertical-align: middle;
+}
+
+.balance-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--border);
+}
+.balance-row:last-child {
+    border-bottom: none;
+}
+.bal-placeholder {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+code {
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-size: 0.85em;
+    background: #f0f0f0;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+}
+
+.empty {
+    color: var(--muted);
+    font-style: italic;
+}

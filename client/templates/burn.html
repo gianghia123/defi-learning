@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Burn — DeFi Learning{% endblock %}
+{% block content %}
+<section data-page="burn">
+    <h1>Burn Tokens</h1>
+    <div class="card">
+        <form id="burn-form">
+            <label for="burn-from">From Wallet</label>
+            <select id="burn-from" required>
+                <option value="">— select wallet —</option>
+            </select>
+
+            <label for="burn-amount">Amount</label>
+            <input id="burn-amount" type="number" step="any" min="0" placeholder="0.0 gwei" required>
+
+            <button type="submit">Burn Tokens</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Wallet — DeFi Learning{% endblock %}
+{% block content %}
+<section data-page="wallet">
+    <h1>Manage Wallets</h1>
+
+    <div class="card">
+        <h2>Connect to MetaMask's wallet</h2>
+        <button type="button" onclick="connectWallet()">Connect MetaMask</button>
+    </div>
+
+    <div class="card">
+        <h2>Your Wallets</h2>
+        <ul id="wallet-list">
+            <li>Loading…</li>
+        </ul>
+    </div>
+</section>
+{% endblock %}

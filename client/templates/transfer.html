@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Transfer — DeFi Learning{% endblock %}
+{% block content %}
+<section data-page="transfer">
+    <h1>Transfer Tokens</h1>
+
+    <div class="card">
+        <form id="transfer-form">
+            <label for="transfer-from">From Wallet</label>
+            <select id="transfer-from" required>
+                <option value="">— select wallet —</option>
+            </select>
+
+            <label for="transfer-to">To Address</label>
+            <input id="transfer-to" type="text" placeholder="0x…" required>
+
+            <label for="transfer-amount">Amount</label>
+            <input id="transfer-amount" type="number" step="any" min="0" placeholder="0.0 gwei" required>
+
+            <button type="submit">Send Transfer</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
