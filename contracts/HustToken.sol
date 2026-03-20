@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.8;
 
-import "./IERC20.sol";
-import "./Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract HustToken is IERC20, Ownable {
     uint256 _totalSupply = 10000 ether;
@@ -53,7 +53,9 @@ contract HustToken is IERC20, Ownable {
         uint256 _value
     ) public returns (bool success) {
         require((_from != address(0)) || (_to != address(0)));
-        return _transfer(msg.sender, _to, _value);
+        require(allowances[_from][_to] >= _value);
+        allowances[_from][_to] -= _value;
+        return _transfer(_from, _to, _value);
     }
 
     function mint(
@@ -102,7 +104,6 @@ contract HustToken is IERC20, Ownable {
             );
             balances[_from] -= _value;
             balances[_to] += _value;
-            allowances[_from][_to] -= _value;
         }
         emit Transfer(_from, _to, _value);
         return true;
