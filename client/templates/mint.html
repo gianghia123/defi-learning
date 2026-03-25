@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Admin: Mint Tokens - DeFi Dashboard{% endblock %}
+
+{% block nav_items %}
+<span class="label label-error mr-2">Admin Area</span>
+<a href="{{ url_for('index') }}" class="btn btn-link">Home</a>
+{% endblock %}
+
+{% block content %}
+<div class="columns mt-2">
+    <div class="column col-6 col-mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title h5">Mint Tokens (Admin)</div>
+                <div class="card-subtitle text-gray">Create new tokens and assign them to an address.</div>
+            </div>
+            <div class="card-body">
+                <form id="mint-form">
+                    <div class="form-group">
+                        <label class="form-label" for="mint-to">Target Address</label>
+                        <input class="form-input" type="text" id="mint-to" placeholder="0x...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="mint-amount">Amount to Mint</label>
+                        <div class="input-group">
+                            <input type="number" class="form-input" id="mint-amount" placeholder="0.00">
+                            <span class="input-group-addon" id="mint-symbol"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" type="button">Mint Tokens</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

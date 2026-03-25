@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Token Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='dist/spectre-icons.min.css') }}">
+{% endblock %}
+
+{% block nav_items %}
+<a href="{{ url_for('wallet') }}" class="btn btn-link">Wallet</a>
+<a href="{{ url_for('transfer') }}" class="btn btn-link">Transfer</a>
+<a href="{{ url_for('burn') }}" class="btn btn-link">Burn</a>
+<a href="{{ url_for('mint') }}" class="btn btn-link">Mint (Admin)</a>
+<a href="{{ url_for('login') }}" class="btn btn-primary ml-2">Logout</a>
+{% endblock %}
+
+{% block content %}
+<div class="columns mt-2">
+    <div class="column col-12">
+        <div class="panel">
+            <div class="panel-header">
+                <div class="panel-title h4">Hello, <span id="name">---</span></div>
+            </div>
+            <div class="panel-body">
+                <div class="tile tile-centered mt-2">
+                    <div class="tile-content">
+                        <div class="tile-title text-bold">Email Address</div>
+                        <div class="tile-subtitle" id="email">---</div>
+                    </div>
+                </div>
+                <div class="tile tile-centered mt-2">
+                    <div class="tile-content">
+                        <div class="tile-title text-bold">Wallet Address</div>
+                        <div class="tile-subtitle" id="wallet-address">---</div>
+                    </div>
+                    <div class="tile-action">
+                        <a href="{{ url_for('wallet') }}" class="btn btn-sm">Update</a>
+                    </div>
+                </div>
+                <div class="tile tile-centered mt-2">
+                    <div class="tile-content">
+                        <div class="tile-title text-bold">Balance</div>
+                        <div class="tile-subtitle text-primary h5" id="balance">---</div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="btn-group btn-group-block">
+                    <a href="{{ url_for('transfer') }}" class="btn btn-primary">Transfer Tokens</a>
+                    <a href="{{ url_for('burn') }}" class="btn">Burn Tokens</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script type="module" src="{{ url_for('static', filename='index.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Transfer Tokens - DeFi Dashboard{% endblock %}
+
+{% block content %}
+<div class="columns mt-2">
+    <div class="column col-6 col-mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title h5">Transfer Tokens</div>
+                <div class="card-subtitle text-gray">Send tokens to another wallet address.</div>
+            </div>
+            <div class="card-body">
+                <form id="transfer-form">
+                    <div class="form-group">
+                        <label class="form-label" for="transfer-to">Recipient Address</label>
+                        <input class="form-input" type="text" id="transfer-to" placeholder="0x...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="transfer-amount">Amount</label>
+                        <div class="input-group">
+                            <input type="number" class="form-input" id="transfer-amount" placeholder="0.00">
+                            <span class="input-group-addon">TKN</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" type="button">Send Transfer</button>
+                <a href="{{ url_for('index') }}" class="btn btn-link">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

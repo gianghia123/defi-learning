@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Add Wallet - DeFi Dashboard{% endblock %}
+
+{% block content %}
+<div class="columns mt-2">
+    <div class="column col-6 col-mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title h5">Connect / Add Crypto Wallet</div>
+                <div class="card-subtitle text-gray">Link your wallet to view balances and make transactions.</div>
+            </div>
+            <div class="card-body">
+                <div class="empty bg-gray" id="wallet-status-container" style="margin-top: 2rem;">
+                    <p class="empty-title h5" id="wallet-title">No wallet connected</p>
+                    <p class="empty-subtitle" id="wallet-subtitle">Connect your browser wallet extension to continue.
+                    </p>
+                    <div class="empty-action" id="wallet-action-container">
+                        <button class="btn btn-primary" id="connect-wallet-btn">Connect Web3 Wallet</button>
+                    </div>
+                </div>
+                <div class="divider text-center" data-content="OR"></div>
+                <form id="manual-wallet-form">
+                    <div class="form-group">
+                        <label class="form-label" for="wallet-address">Manually Add Address</label>
+                        <input class="form-input" type="text" id="wallet-address" placeholder="0x...">
+                    </div>
+                    <button class="btn btn-block" type="button">Save Address</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script type="module" src="{{ url_for('static', filename='wallet.js') }}"></script>
+{% endblock %}
