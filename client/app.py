@@ -1,14 +1,25 @@
+import os
+from dotenv import load_dotenv
+
 from flask import Flask, render_template, request, redirect, url_for, session
 from functools import wraps
+
+load_dotenv()
 
 # Initialize Flask app
 # Assuming the dist folder has been moved to static/dist manually if using default static path
 app = Flask(__name__)
 
 # Basic SQLAlchemy Setup (SQLite for local testing)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///defi.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///defi.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = 'super_secret_development_key'
+app.secret_key = os.getenv('SECRET_KEY', 'super_secret_development_key')
+
+from contract import ContractWrapper
+contract_address = os.getenv('CONTRACT_ADDRESS')
+provider_url = os.getenv('PROVIDER_URL')
+contract_wrapper = ContractWrapper(contract_address, provider_url) if contract_address and provider_url else None
+
 
 try:
     from flask_sqlalchemy import SQLAlchemy
@@ -128,28 +139,49 @@ def me():
 @app.route('/api/update-wallet', methods=['POST'])
 @is_user_login
 def update_wallet():
+    from sqlalchemy.exc import IntegrityError
     data = request.json
     user = User.query.get(session['user_id'])
     user.address = data.get('address')
-    db.session.commit()
-    return {"success": True}
+    try:
+        db.session.commit()
+        return {"message": "Wallet updated successfully"}
+    except IntegrityError:
+        db.session.rollback()
+        return {"error": "This wallet address is already bound to another account."}, 400
 
 @app.route('/wallet')
+@is_user_login
 def wallet():
     return render_template('wallet.html')
 
 @app.route('/transfer')
+@is_user_login
 def transfer():
     return render_template('transfer.html')
 
 @app.route('/burn')
+@is_user_login
 def burn():
     return render_template('burn.html')
 
 @app.route('/mint')
+@is_user_login
 @is_user_admin
 def mint():
     return render_template('mint.html')
+
+@app.route('/api/mint', methods=['POST'])
+@is_user_login
+@is_user_admin
+def minting():
+    data = request.json
+    print(data)
+    to_address = data.get('to_account')
+    amount = int(data.get('amount'))
+    tx_hash = contract_wrapper.mint(to_address, amount, os.getenv('PRIVATE_KEY'))
+    return {"message": "Minted successfully", "tx_hash": tx_hash}
+
 
 # Initialize DB unconditionally on startup
 init_db()

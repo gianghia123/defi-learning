@@ -20,7 +20,11 @@
                         <label class="form-label" for="transfer-amount">Amount</label>
                         <div class="input-group">
                             <input type="number" class="form-input" id="transfer-amount" placeholder="0.00">
-                            <span class="input-group-addon">TKN</span>
+                            <select class="form-select" id="transfer-denominator" style="flex: 0 0 auto; width: auto;">
+                                <option value="HUST">HUST</option>
+                                <option value="nanoHUST">nanoHUST</option>
+                                <option value="attoHUST">attoHUST</option>
+                            </select>
                         </div>
                     </div>
                 </form>

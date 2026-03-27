@@ -19,14 +19,19 @@ class WalletManager {
             console.error("Could not fetch user profile details", err);
         }
 
+        await window.ethereum.request({
+            method: "wallet_requestPermissions",
+            params: [{ eth_accounts: {} }]
+        });
+
         this.provider = new ethers.BrowserProvider(window.ethereum);
         this.signer = await this.provider.getSigner(); // triggers popup
         const address = await this.signer.getAddress();
-        
+
         if (storedAddress && storedAddress.toLowerCase() !== address.toLowerCase()) {
             throw new Error(`Connected wallet address does not match the stored address.`);
         }
-        
+
         this.address = address;
         localStorage.setItem('wallet', this.address);
         this._attachListeners();
@@ -37,6 +42,15 @@ class WalletManager {
         if (!localStorage.getItem('wallet')) return false;
         const accounts = await window.ethereum.request({ method: 'eth_accounts' });
         if (!accounts.length) {
+            localStorage.removeItem('wallet');
+            return false;
+        }
+        const data = await fetch("/api/me").then(res => res.json());
+        if (data.address === null) {
+            localStorage.removeItem('wallet');
+            return false;
+        }
+        if (data.address.toLowerCase() !== accounts[0].toLowerCase()) {
             localStorage.removeItem('wallet');
             return false;
         }

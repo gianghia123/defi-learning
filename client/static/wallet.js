@@ -43,12 +43,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                             },
                             body: JSON.stringify({ address }),
                         }).then(res => res.json());
-                        if (data.success) {
+                        if (data.message) {
                             window.location.href = "/index";
                         } else {
                             throw new Error("Failed to update wallet: " + data.message);
                         }
                     } catch (err) {
+                        window.wallet.disconnect();
                         alert("Failed to connect: " + err.message);
                     }
                 });
